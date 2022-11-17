@@ -15,6 +15,7 @@
 #define col6 A4 
 #define col4 A5
 
+boolean field[][] = {}
 int row[] = {row0, row1, row2, row3, row4, row5, row6, row7};
 int column[] = {col0, col1, col3, col4, col5, col6, col7};
 
@@ -54,6 +55,10 @@ void loop() {
 
   digitalWrite(12, HIGH);
   digitalWrite(5, LOW);
+}
+
+void TrackPlacement(){
+
 }
 
 void switchLED(int r, int c, bool ON){
