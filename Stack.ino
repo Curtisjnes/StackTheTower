@@ -14,13 +14,14 @@
 #define row6 A3
 #define col6 A4 
 #define col4 A5
+#define resetButtonPin 0
+#define placeButtonPin 1
 
-boolean field[][] = {}
 int row[] = {row0, row1, row2, row3, row4, row5, row6, row7};
 int column[] = {col0, col1, col3, col4, col5, col6, col7};
 
 void setup() {
-
+  Serial.begin(9600);
   for(int i = 0; i<=7; i++){
     pinMode(row[i], OUTPUT);
   }
@@ -37,27 +38,23 @@ void clearDisplay(){
   for(int i = 0; i<=7; i++){
     digitalWrite(column[i], LOW);
   } 
+  pinMode(resetButtonPin, INPUT);
+  pinMode(placeButtonPin, INPUT);
+
+  digitalWrite(resetButtonPin, LOW);
+  digitalWrite(placeButtonPin, LOW);
 }
 
 void loop() {
-  digitalWrite(2, HIGH);
-  digitalWrite(9, LOW);
 
-  delay(500);
-
-  digitalWrite(9, HIGH);
-  digitalWrite(2, LOW);
-
-  digitalWrite(5, HIGH);
-  digitalWrite(12, LOW);
-
-  delay(500);
-
-  digitalWrite(12, HIGH);
-  digitalWrite(5, LOW);
-}
-
-void TrackPlacement(){
+  if(digitalRead(resetButtonPin) == HIGH){
+    Serial.write("1");
+    Serial.println();
+  }else{
+    Serial.write("0");
+    Serial.println();
+  }
+  delay(1000);
 
 }
 
